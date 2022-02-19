@@ -1,0 +1,26 @@
+# packages in environment at /Users/niamatzawad/miniforge3/envs/treehacks:
+#
+# Name                    Version                   Build  Channel
+bzip2                     1.0.8                h3422bc3_4    conda-forge
+ca-certificates           2021.10.8            h4653dfc_0    conda-forge
+click                     8.0.4                    pypi_0    pypi
+flask                     2.0.3              pyhd8ed1ab_0    conda-forge
+itsdangerous              2.1.0              pyhd8ed1ab_0    conda-forge
+jinja2                    3.0.3              pyhd8ed1ab_0    conda-forge
+libffi                    3.4.2                h3422bc3_5    conda-forge
+libzlib                   1.2.11            hee7b306_1013    conda-forge
+markupsafe                2.1.0                    pypi_0    pypi
+ncurses                   6.3                  hc470f4d_0    conda-forge
+openssl                   3.0.0                h3422bc3_2    conda-forge
+pip                       22.0.3             pyhd8ed1ab_0    conda-forge
+python                    3.10.2          h38ef502_3_cpython    conda-forge
+python_abi                3.10                    2_cp310    conda-forge
+readline                  8.1                  hedafd6a_0    conda-forge
+setuptools                60.9.3                   pypi_0    pypi
+sqlite                    3.37.0               h72a2b83_0    conda-forge
+tk                        8.6.12               he1e0b03_0    conda-forge
+tzdata                    2021e                he74cb21_0    conda-forge
+werkzeug                  2.0.3              pyhd8ed1ab_1    conda-forge
+wheel                     0.37.1             pyhd8ed1ab_0    conda-forge
+xz                        5.2.5                h642e427_1    conda-forge
+zlib                      1.2.11            hee7b306_1013    conda-forge
