@@ -12,7 +12,7 @@ function Home() {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) navigate("/");
+    if (!user) navigate("/login");
   }, [user, loading]);
   return (
     <div>
