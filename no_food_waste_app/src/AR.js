@@ -103,7 +103,7 @@ function AR() {
         >
           Connect
         </Button>{" "}
-        <a href={"https://adi-ar.surge.sh/"}> Connect with AR</a>{" "}
+        <a href={"https://adi-ar.netlify.app/"}> Connect with AR</a>{" "}
       </Container>
       <MyVerticallyCenteredModal
         show={modalShow}
