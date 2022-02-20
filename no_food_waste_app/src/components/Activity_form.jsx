@@ -27,7 +27,7 @@ function Activity_form() {
     // Buscar el documento de assets que corresponde al usuario.
     //const userRef = collection(db, "assets"); 
     // Buscar el documento de usersdata que corresponde al usuario.
-    const usersdataRef = doc(db, "usersdata", user.uid);
+    const usersdataRef = doc(db, "users", user.uid);
     //Se crea el archivo o se junta si ya existe.
     // addDoc(userRef, {
     //   description: description,
@@ -97,7 +97,7 @@ function Activity_form() {
           <h3 className="mb-0">How far did you go today?</h3>
         </div>
         <div className="card-body">
-          <form autoComplete="off" className="form" role="form">
+          <form autoComplete="off" className="form" role="form" onSubmit={publishActivity}>
             {/* <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label">
                 What did you do?
@@ -117,7 +117,7 @@ function Activity_form() {
                 Enter distance walked (meters)
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} oninput="validity.valid||(value='');"  onChange={(event) => {
+                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');"  onChange={(event) => {
                     setDistanceWalked(event.target.value);
                   }} />
               </div>
@@ -128,7 +128,7 @@ function Activity_form() {
                 Enter distance traveled by vehicle (kilometers) (Car, bus, train...)
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} oninput="validity.valid||(value='');" onChange={(event) => {
+                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
                     setDistanceByVehicle(event.target.value);
                   }}/>
               </div>
@@ -139,7 +139,7 @@ function Activity_form() {
                 Enter amount of waste produced
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} oninput="validity.valid||(value='');" onChange={(event) => {
+                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
                     setWasteProduced(event.target.value);
                   }}/>
               </div>
@@ -150,7 +150,7 @@ function Activity_form() {
                 Enter hours of natural light
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} oninput="validity.valid||(value='');" onChange={(event) => {
+                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
                     setNaturalLight(event.target.value);
                   }}/>
               </div>
@@ -161,7 +161,7 @@ function Activity_form() {
                 Enter how many time you use for shower (minutes)
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} oninput="validity.valid||(value='');" onChange={(event) => {
+                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
                     setShowerTime(event.target.value);
                   }}/>
               </div>
@@ -172,7 +172,7 @@ function Activity_form() {
                 Enter amount of waste recycled
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={1} min={0} oninput="validity.valid||(value='');" onChange={(event) => {
+                <input className="form-control" type="number" step={1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
                     setRecycled(event.target.value);
                   }}/>
               </div>
@@ -201,9 +201,8 @@ function Activity_form() {
                 <input className="btn btn-secondary" type="reset" value="Cancel" />
                 <input
                   className="btn btn-primary"
-                  type="button"
+                  type="submit"
                   value="Submit"
-                  onSubmit={publishActivity}
                 />
               </div>
             </div>
