@@ -10,7 +10,7 @@ function header() {
       <a class="navbar-brand mx-2" href="#">Go Green!</a>
       <form class="form-inline">
         <a href="/login"><button class="btn btn-sm btn-outline-success mx-1" type="button">Login</button></a>
-        <button class="btn btn-sm btn-outline-success mx-2" type="button">Sign up</button>
+        <a href="/register"><button class="btn btn-sm btn-outline-success mx-2" type="button">Sign up</button></a>
       </form>
   </nav>
   )
