@@ -15,6 +15,7 @@ import {
   getFirestore,
   query,
   getDocs,
+  getDoc,
   collection,
   where,
   addDoc,
@@ -101,10 +102,34 @@ const logout = () => {
   signOut(auth);
 };
 
+const getDataCollection = async (coleccion) => {
+  const colRef = collection(db, coleccion); 
+  let books = [];
+
+  await getDocs(colRef)
+    .then((snapshot) => {
+
+      snapshot.docs.forEach((doc) => {
+        doc.data().carbonData.forEach( (attribute) => {
+          books.push(attribute);
+        })
+        
+      })
+      //Imprimo el contenido del arreglo que cree
+    })
+    .catch(err => {
+      console.log(err.message)
+      books = null;
+    })
+
+  return books;
+}
+
 export {
   firebaseApp,
   auth,
   db,
+  getDataCollection,
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,

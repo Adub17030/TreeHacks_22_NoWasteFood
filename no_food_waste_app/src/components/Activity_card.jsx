@@ -1,20 +1,20 @@
 import React from "react";
 import {useEffect, useState} from 'react';
 import Card from 'react-bootstrap/Card'
-import { getUserData } from "../firebase";
+/*import { getUserData } from "../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+*/
 function Activity_card() {
-  const [allThePublications, setAllThePublications] = useState([]);
+/*  const [allThePublications, setAllThePublications] = useState([]);
 
   useEffect(() => {
     //Call firebase to retrieve publications from friends of current user
     fetchUserData();
   }, []);
-
+*//*
   async function fetchUserData() {
     const auth = getAuth();
-    onAuthStateChanged(auth, async (user)=> {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         const theUserData = await getUserData(user);
         //console.log(theUserData)
@@ -28,7 +28,7 @@ function Activity_card() {
       }
     })
   }
-
+*/
   return (
     <div className="container text-center">
       <div className="row">

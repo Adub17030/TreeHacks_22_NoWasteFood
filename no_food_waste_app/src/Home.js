@@ -10,6 +10,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Home.css";
 import { doc, getDoc } from "firebase/firestore";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { getDataCollection } from "./firebase";
 
 function Home() {
   const [user, loading, error] = useAuthState(auth);
@@ -84,6 +85,7 @@ function Home() {
 
   useEffect(() => {
     getCurrentUserData();
+    console.log(getDataCollection("users"));
     if (!user) navigate("/");
   }, [user, loading]);
   return (
