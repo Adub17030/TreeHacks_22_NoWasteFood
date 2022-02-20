@@ -270,18 +270,18 @@ function Activity_form() {
               </div>
             </div>
 
-            <div className="form-group row">
+            <div className="form-group row mt-3">
               <label className="col-lg-3 col-form-label form-control-label"></label>
               <div className="col-lg-9">
-                <input
-                  className="btn btn-secondary"
-                  type="reset"
-                  value="Cancel"
-                />
-                <input
-                  className="btn btn-primary"
+              <input
+                  className="btn btn-success mx-3"
                   type="submit"
                   value="Submit"
+                />
+                <input
+                  className="btn btn-light"
+                  type="reset"
+                  value="Cancel"
                 />
               </div>
             </div>
