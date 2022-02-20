@@ -126,14 +126,22 @@ function Home() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div>Welcome back: {userName}</div>
-      <div class="text-center mt-5">
+      <div className="container">
+        <div className="row align-middle">
+          <div className="col-12 py-3">
+          <div>Welcome back: {userName}</div>
+          </div>
+        </div>
+      
+      </div>
+      
+      <div class="text-center mt-0">
         <div class="card text-center">
           <div class="card-header" style={{ backgroundColor: "#B7EBB7" }}>
             <h2>My activity</h2>
           </div>
           <div class="card-body">
-            <h5 class="card-title">On average you have..</h5>
+            <h5 class="card-title">On average you have...</h5>
             <p class="card-text">
               Walked {avgUserCarbonData.distanceWalked} km
               <br />
@@ -151,7 +159,7 @@ function Home() {
             </p>
           </div>
           <div
-            class="card-footer text-muted"
+            class="mb-2 card-footer text-muted"
             style={{ backgroundColor: "#B7EBB7" }}
           >
             {lastCarbonDataUpdateDays} days ago

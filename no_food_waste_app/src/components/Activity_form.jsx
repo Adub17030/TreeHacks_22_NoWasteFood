@@ -125,20 +125,6 @@ function Activity_form() {
             role="form"
             onSubmit={publishActivity}
           >
-            {/* <div className="form-group row">
-              <label className="col-lg-3 col-form-label form-control-label">
-                What did you do?
-              </label>
-              <div className="col-lg-9">
-                <select className="form-control" id="user_time_zone" size="0">
-                  <option value="Hawaii">Take public transport</option>
-                  <option value="Alaska">Walk 5km</option>
-                  <option value="Pacific Time (US &amp; Canada)">
-                    Walk 10km
-                  </option>
-                </select>
-              </div>
-            </div> */}
             <div className="form-group row ">
               <label className="col-lg-3 col-form-label form-control-label">
                 Enter distance walked:
@@ -150,7 +136,6 @@ function Activity_form() {
                   placeholder="Kilometer"
                   step={0.1}
                   min={0}
-                  onInput="validity.valid||(value='');"
                   onChange={(event) => {
                     setDistanceWalked(event.target.value);
                   }}
@@ -178,14 +163,13 @@ function Activity_form() {
                   <option value="scooter">Scooter</option>
                 </select>
               </div>
-              <div className="col-lg-9">
+              <div className="col-lg-9 offset-lg-3">
                 <input
                   className="form-control"
                   type="number"
                   placeholder="Kilometer"
                   step={0.1}
                   min={0}
-                  onInput="validity.valid||(value='');"
                   onChange={(event) => {
                     setDistanceByVehicle(event.target.value);
                   }}
@@ -204,7 +188,6 @@ function Activity_form() {
                   placeholder="Pounds"
                   step={0.1}
                   min={0}
-                  onInput="validity.valid||(value='');"
                   onChange={(event) => {
                     setWasteProduced(event.target.value);
                   }}
@@ -223,7 +206,6 @@ function Activity_form() {
                   placeholder="Hours"
                   step={0.1}
                   min={0}
-                  onInput="validity.valid||(value='');"
                   onChange={(event) => {
                     setNaturalLight(event.target.value);
                   }}
@@ -242,7 +224,6 @@ function Activity_form() {
                   placeholder="Minutes"
                   step={0.1}
                   min={0}
-                  onInput="validity.valid||(value='');"
                   onChange={(event) => {
                     setShowerTime(event.target.value);
                   }}
@@ -261,7 +242,6 @@ function Activity_form() {
                   placeholder="Pounds"
                   step={1}
                   min={0}
-                  onInput="validity.valid||(value='');"
                   onChange={(event) => {
                     setRecycled(event.target.value);
                   }}

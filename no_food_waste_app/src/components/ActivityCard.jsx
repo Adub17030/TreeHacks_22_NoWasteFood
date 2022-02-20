@@ -35,13 +35,13 @@ function ActivityCard(props) {
         src="https://mdbootstrap.com/img/new/standard/city/062.webp"
       />
       <MDBCardBody>
-        <MDBCardTitle>{props.data.userName}</MDBCardTitle>
-        <MDBCardText>{props.data.dates}</MDBCardText>
+        <MDBCardTitle>Hey, {props.data.userName}</MDBCardTitle>
+        <MDBCardText>The date: {props.data.dates}</MDBCardText>
       </MDBCardBody>
       <MDBListGroup flush>
-        <MDBListGroupItem>{props.data.distanceWalked}</MDBListGroupItem>
-        <MDBListGroupItem>{props.data.recycled}</MDBListGroupItem>
-        <MDBListGroupItem>{props.data.naturalLight}</MDBListGroupItem>
+        <MDBListGroupItem>Walked {props.data.distanceWalked}km. He just go to some cool places.</MDBListGroupItem>
+        <MDBListGroupItem>Recycled {props.data.recycled}kg worth of waste. Nice!</MDBListGroupItem>
+        <MDBListGroupItem>Benefit {props.data.naturalLight} hours of natural light. Got some vitamin D.</MDBListGroupItem>
       </MDBListGroup>
     </MDBCard>
   );

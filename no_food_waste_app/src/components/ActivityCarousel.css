@@ -1,8 +1,9 @@
 .card {
-  font-size: 10px;
+  font-size: .625rem;
 }
 
 .cSol {
   margin-right: 10%;
   margin-left: 10%;
+  margin-bottom: 2rem;
 }
