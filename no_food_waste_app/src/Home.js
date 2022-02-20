@@ -11,6 +11,7 @@ import "./Home.css";
 import { doc, getDoc } from "firebase/firestore";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { getDataCollection } from "./firebase";
+import ActivityCard from "./components/Activity_card";
 
 function Home() {
   const [user, loading, error] = useAuthState(auth);
@@ -34,11 +35,12 @@ function Home() {
       let carbonData = docSnap.data().carbonData;
       let uName = docSnap.data().name;
       setAvgUserCarbonData({
-        distanceWalked:
-          Math.round(carbonData.reduce(
+        distanceWalked: Math.round(
+          carbonData.reduce(
             (total, next) => Number(total) + Number(next.distanceWalked),
             0
-          ) / carbonData.length),
+          ) / carbonData.length
+        ),
         distanceByVehicle: Math.round(
           carbonData.reduce(
             (total, next) => Number(total) + Number(next.distanceByVehicle),
@@ -153,6 +155,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <ActivityCard data={{ name: "test" }} />
     </div>
   );
 }
