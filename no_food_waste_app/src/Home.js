@@ -35,10 +35,10 @@ function Home() {
       let uName = docSnap.data().name;
       setAvgUserCarbonData({
         distanceWalked:
-          carbonData.reduce(
+          Math.round(carbonData.reduce(
             (total, next) => Number(total) + Number(next.distanceWalked),
             0
-          ) / carbonData.length,
+          ) / carbonData.length),
         distanceByVehicle: Math.round(
           carbonData.reduce(
             (total, next) => Number(total) + Number(next.distanceByVehicle),

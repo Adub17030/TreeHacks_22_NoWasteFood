@@ -28,8 +28,16 @@ function Activity_form() {
   const [recycled, setRecycled] = useState(0);
   const [diet, setDiet] = useState("neither");
 
+
+  const calculateCarbonFootprint = () => {
+    let wasteWeight = (Number(wasteProduced) * 1.5) - (Number(recycled) * 1.5)
+    let activityWeight = (Number(showerTime) )
+    return wasteWeight * 10 + activityWeight * 10 + distanceByVehicle * 10
+  }
+
   //Function tu publish your activity
   const publishActivity = async (e) => {
+    console.log(calculateCarbonFootprint());
     e.preventDefault();
 
     // Search for document in users of the current user.
