@@ -38,12 +38,12 @@ function Activity_form() {
       {
         carbonData: arrayUnion({
           distanceWalked: distanceWalked,
-          DistanceByVehicle: distanceByVehicle,
-          WasteProduced: wasteProduced,
-          NaturalLight: naturalLight,
-          ShowerTime: showerTime,
-          Recycled: recycled,
-          Diet: diet,
+          distanceByVehicle: distanceByVehicle,
+          wasteProduced: wasteProduced,
+          naturalLight: naturalLight,
+          showerTime: showerTime,
+          recycled: recycled,
+          diet: diet,
           dates: `${date.getFullYear()}-${
             date.getMonth() + 1
           }-${date.getDate()}`,
@@ -73,16 +73,13 @@ function Activity_form() {
           autoClose: 1500,
           position: toast.POSITION.TOP_CENTER,
           theme: "colored",
-          
         });
-        
       })
       .then(() => {
         //Reloading page
-        setTimeout( () => {
+        setTimeout(() => {
           navigate("/home");
-        }, 1000)
-        
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);
