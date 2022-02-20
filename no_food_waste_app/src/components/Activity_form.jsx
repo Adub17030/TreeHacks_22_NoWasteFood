@@ -3,9 +3,10 @@ import React from "react";
 
 function Activity_form() {
   return (
-    <div className="container">
+    <div className="container mt-2">
     <div className="row">
       <div className="col-12">
+        <h4>How far did you go today?</h4>
         <form>
           <div className="mb-3">
             <label htmlFor="activity_name" className="form-label">
