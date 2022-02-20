@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   collection,
   addDoc,
   doc,
+  getDoc,
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
@@ -15,11 +15,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Activity_form() {
   const user = auth.currentUser;
+  const [userName, setUserName] = useState(0);
   const date = new Date();
   const navigate = useNavigate();
   toast.configure();
   const [distanceWalked, setDistanceWalked] = useState(0);
   const [distanceByVehicle, setDistanceByVehicle] = useState(0);
+  const [vehicle, setVehicle] = useState("car");
   const [wasteProduced, setWasteProduced] = useState(0);
   const [naturalLight, setNaturalLight] = useState(0);
   const [showerTime, setShowerTime] = useState(0);
@@ -32,11 +34,17 @@ function Activity_form() {
 
     // Search for document in users of the current user.
     const usersdataRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(usersdataRef);
+    let uName = docSnap.data().name;
+    setUserName(uName);
 
     updateDoc(
       usersdataRef,
       {
         carbonData: arrayUnion({
+          userName: uName,
+          vehicle: vehicle,
+          timestamp: Date.now(),
           distanceWalked: distanceWalked,
           distanceByVehicle: distanceByVehicle,
           wasteProduced: wasteProduced,
@@ -62,7 +70,8 @@ function Activity_form() {
         setNaturalLight(0);
         setShowerTime(0);
         setRecycled(0);
-        setDiet("Neither");
+        setDiet("neither");
+        setVehicle("car");
 
         //Imprimo los documentos de esa coleccion ::::
         //const datos = getDataCollection("collections");
@@ -124,12 +133,13 @@ function Activity_form() {
             </div> */}
             <div className="form-group row ">
               <label className="col-lg-3 col-form-label form-control-label">
-                Enter distance walked (meters)
+                Enter distance walked:
               </label>
               <div className="col-lg-9">
                 <input
                   className="form-control"
                   type="number"
+                  placeholder="Kilometer"
                   step={0.1}
                   min={0}
                   onInput="validity.valid||(value='');"
@@ -142,13 +152,29 @@ function Activity_form() {
 
             <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label">
-                Enter distance traveled by vehicle (kilometers) (Car, bus,
-                train...)
+                Enter distance traveled by vehicle:
               </label>
+              <div className="col-lg-9">
+                <select
+                  className="form-control"
+                  id="user_time_zone"
+                  size="0"
+                  onChange={(event) => {
+                    console.log(event.target.value);
+                    setVehicle(event.target.value);
+                  }}
+                >
+                  <option value="car">Car</option>
+                  <option value="bus">Bus</option>
+                  <option value="train">Train</option>
+                  <option value="scooter">Scooter</option>
+                </select>
+              </div>
               <div className="col-lg-9">
                 <input
                   className="form-control"
                   type="number"
+                  placeholder="Kilometer"
                   step={0.1}
                   min={0}
                   onInput="validity.valid||(value='');"
@@ -161,12 +187,13 @@ function Activity_form() {
 
             <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label">
-                Enter amount of waste produced
+                Enter amount of waste produced:
               </label>
               <div className="col-lg-9">
                 <input
                   className="form-control"
                   type="number"
+                  placeholder="Pounds"
                   step={0.1}
                   min={0}
                   onInput="validity.valid||(value='');"
@@ -179,12 +206,13 @@ function Activity_form() {
 
             <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label">
-                Enter hours of natural light
+                Enter amount of window light over room light:
               </label>
               <div className="col-lg-9">
                 <input
                   className="form-control"
                   type="number"
+                  placeholder="Hours"
                   step={0.1}
                   min={0}
                   onInput="validity.valid||(value='');"
@@ -197,12 +225,13 @@ function Activity_form() {
 
             <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label">
-                Enter how many time you use for shower (minutes)
+                How long was your shower?
               </label>
               <div className="col-lg-9">
                 <input
                   className="form-control"
                   type="number"
+                  placeholder="Minutes"
                   step={0.1}
                   min={0}
                   onInput="validity.valid||(value='');"
@@ -221,6 +250,7 @@ function Activity_form() {
                 <input
                   className="form-control"
                   type="number"
+                  placeholder="Pounds"
                   step={1}
                   min={0}
                   onInput="validity.valid||(value='');"
