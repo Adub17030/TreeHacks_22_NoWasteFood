@@ -5,6 +5,7 @@ import Register from "./Register";
 import Home from "./Home";
 import Welcome from "./Welcome";
 import PostBehaviour from "./pages/PostBehaviour";
+import ActivityCard from "./components/Activity_card";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/activity" element={<PostBehaviour />} />
           <Route path="/" element={<Welcome />} />
+          <Route path="/card" element={<ActivityCard />} />
         </Routes>
       </BrowserRouter>
       {
