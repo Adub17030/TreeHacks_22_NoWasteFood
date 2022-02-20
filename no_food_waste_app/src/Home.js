@@ -13,26 +13,27 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 function Home() {
   const [user, loading, error] = useAuthState(auth);
-  const [lastUserCarbonData, setLastUserCarbonData] = useState({ distanceWalked: "", distanceByVehicle: "", wasteProduced: "", naturalLight: "", showerTime: "", recycled: "", diet: ""});
+  const [avgUserCarbonData, setAvgUserCarbonData] = useState({ distanceWalked: "", distanceByVehicle: "", wasteProduced: "", naturalLight: "", showerTime: "", recycled: "", diet: ""});
+  const [lastCarbonDataUpdateDays, setLastCarbonDataUpdateDays] = useState(-1);
   const navigate = useNavigate();
 
-  const [distanceWalked, setDistanceWalked] = useState(0);
-  const [distanceByVehicle, setDistanceByVehicle] = useState(0);
-  const [wasteProduced, setWasteProduced] = useState(0);
-  const [naturalLight, setNaturalLight] = useState(0);
-  const [showerTime, setShowerTime] = useState(0);
-  const [recycled, setRecycled] = useState(0);
-  const [diet, setDiet] = useState("neither");
-
   const getCurrentUserData =async() => {
-
     const usersdataRef = doc(getFirestore(), "users", user.uid);
     const docSnap = await getDoc(usersdataRef);
     if (docSnap.exists()) {
       let carbonData = docSnap.data().carbonData
-      let lastData = carbonData[carbonData.length - 1]
-      setLastUserCarbonData({lastData})
-      console.log(lastUserCarbonData)
+      setAvgUserCarbonData({distanceWalked : (carbonData.reduce((total, next) => Number(total) + Number(next.distanceWalked), 0)) / carbonData.length ,
+        distanceByVehicle :  Math.round((carbonData.reduce((total, next) => Number(total) + Number(next.distanceByVehicle), 0)) / carbonData.length),
+        wasteProduced : Math.round((carbonData.reduce((total, next) => Number(total) + Number(next.wasteProduced), 0)) / carbonData.length),
+        naturalLight :  Math.round((carbonData.reduce((total, next) => Number(total) + Number(next.naturalLight), 0)) / carbonData.length),
+        showerTime :  Math.round((carbonData.reduce((total, next) => Number(total) + Number(next.showerTime), 0)) / carbonData.length),
+        recycled :  Math.round((carbonData.reduce((total, next) => Number(total) + Number(next.recycled), 0)) / carbonData.length),
+        diet : carbonData[carbonData.length - 1].diet
+      })
+
+      const currentDate = new Date().getDate()
+      const oldDate = new Date(carbonData[carbonData.length - 1].dates).getDate()
+      setLastCarbonDataUpdateDays(currentDate - oldDate)
     }
     else{
       console.log("No such document!");
@@ -96,21 +97,22 @@ function Home() {
             <h2>My activity</h2>
           </div>
           <div class="card-body">
-            <h5 class="card-title">On average you have</h5>
+            <h5 class="card-title">On average you have..</h5>
             <p class="card-text">
-              Walked {lastUserCarbonData.distanceWalked} km<br/>
-              Produced {lastUserCarbonData.wasteProduced} kg of waste<br/>
-              Received {lastUserCarbonData.naturalLight} hours worth of natural light <br/>
+              Walked {avgUserCarbonData.distanceWalked} km<br/>
+              Produced {avgUserCarbonData.wasteProduced} kg of waste<br/>
+              Received {avgUserCarbonData.naturalLight} hours worth of natural light <br/>
+              Spent as low as {avgUserCarbonData.showerTime} minutes during shower <br/>
+              Recycled {avgUserCarbonData.showerTime} kgs worth of waste<br/>
+              { avgUserCarbonData.diet == 'vegetarian' && <p>Committed to staying vegetarian</p> }
             </p>
-            <a href="#" class="btn btn-primary">
-              Go somewhere
-            </a>
+
           </div>
           <div
             class="card-footer text-muted"
             style={{ backgroundColor: "#B7EBB7" }}
           >
-            2 days ago
+            {lastCarbonDataUpdateDays} days ago
           </div>
         </div>
       </div>
