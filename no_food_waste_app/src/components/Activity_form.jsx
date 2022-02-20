@@ -1,11 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { db } from  "../firebase";
-import { collection, addDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { db } from "../firebase";
+import {
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Activity_form() {
   const user = auth.currentUser;
@@ -19,13 +24,12 @@ function Activity_form() {
   const [recycled, setRecycled] = useState(0);
   const [diet, setDiet] = useState("neither");
 
-
   //Function tu publish your activity
   const publishActivity = async (e) => {
     e.preventDefault();
-    
+
     // Buscar el documento de assets que corresponde al usuario.
-    //const userRef = collection(db, "assets"); 
+    //const userRef = collection(db, "assets");
     // Buscar el documento de usersdata que corresponde al usuario.
     const usersdataRef = doc(db, "users", user.uid);
     //Se crea el archivo o se junta si ya existe.
@@ -41,20 +45,26 @@ function Activity_form() {
     //       ? state.currentAsset.metadata.image.substring(7)
     //       : null,
     // })
-    updateDoc(usersdataRef, {
-      userUID: user.uid,
-      distanceWalked: arrayUnion(distanceWalked),
-      DistanceByVehicle: arrayUnion(distanceByVehicle),
-      WasteProduced: arrayUnion(wasteProduced),
-      NaturalLight: arrayUnion(naturalLight),
-      ShowerTime: arrayUnion(showerTime),
-      Recycled: arrayUnion(recycled),
-      Diet: arrayUnion(diet),
-      dates: arrayUnion(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`),
-    }, 
-    {
-      merge: true
-    })
+    updateDoc(
+      usersdataRef,
+      {
+        carbonData: arrayUnion({
+          distanceWalked: distanceWalked,
+          DistanceByVehicle: distanceByVehicle,
+          WasteProduced: wasteProduced,
+          NaturalLight: naturalLight,
+          ShowerTime: showerTime,
+          Recycled: recycled,
+          Diet: diet,
+          dates: `${date.getFullYear()}-${
+            date.getMonth() + 1
+          }-${date.getDate()}`,
+        }),
+      },
+      {
+        merge: true,
+      }
+    )
       .then(() => {
         //Limpio el formulario y mando el mensaje de confirmacion
         setDistanceWalked(0);
@@ -88,8 +98,8 @@ function Activity_form() {
           }
         );
       });
-  }
-  
+  };
+
   return (
     <div className="container mt-2">
       <div className="card card-outline-secondary">
@@ -97,7 +107,12 @@ function Activity_form() {
           <h3 className="mb-0">How far did you go today?</h3>
         </div>
         <div className="card-body">
-          <form autoComplete="off" className="form" role="form" onSubmit={publishActivity}>
+          <form
+            autoComplete="off"
+            className="form"
+            role="form"
+            onSubmit={publishActivity}
+          >
             {/* <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label">
                 What did you do?
@@ -117,20 +132,35 @@ function Activity_form() {
                 Enter distance walked (meters)
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');"  onChange={(event) => {
+                <input
+                  className="form-control"
+                  type="number"
+                  step={0.1}
+                  min={0}
+                  onInput="validity.valid||(value='');"
+                  onChange={(event) => {
                     setDistanceWalked(event.target.value);
-                  }} />
+                  }}
+                />
               </div>
             </div>
-            
+
             <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label">
-                Enter distance traveled by vehicle (kilometers) (Car, bus, train...)
+                Enter distance traveled by vehicle (kilometers) (Car, bus,
+                train...)
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
+                <input
+                  className="form-control"
+                  type="number"
+                  step={0.1}
+                  min={0}
+                  onInput="validity.valid||(value='');"
+                  onChange={(event) => {
                     setDistanceByVehicle(event.target.value);
-                  }}/>
+                  }}
+                />
               </div>
             </div>
 
@@ -139,9 +169,16 @@ function Activity_form() {
                 Enter amount of waste produced
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
+                <input
+                  className="form-control"
+                  type="number"
+                  step={0.1}
+                  min={0}
+                  onInput="validity.valid||(value='');"
+                  onChange={(event) => {
                     setWasteProduced(event.target.value);
-                  }}/>
+                  }}
+                />
               </div>
             </div>
 
@@ -150,9 +187,16 @@ function Activity_form() {
                 Enter hours of natural light
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
+                <input
+                  className="form-control"
+                  type="number"
+                  step={0.1}
+                  min={0}
+                  onInput="validity.valid||(value='');"
+                  onChange={(event) => {
                     setNaturalLight(event.target.value);
-                  }}/>
+                  }}
+                />
               </div>
             </div>
 
@@ -161,9 +205,16 @@ function Activity_form() {
                 Enter how many time you use for shower (minutes)
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={.1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
+                <input
+                  className="form-control"
+                  type="number"
+                  step={0.1}
+                  min={0}
+                  onInput="validity.valid||(value='');"
+                  onChange={(event) => {
                     setShowerTime(event.target.value);
-                  }}/>
+                  }}
+                />
               </div>
             </div>
 
@@ -172,9 +223,16 @@ function Activity_form() {
                 Enter amount of waste recycled
               </label>
               <div className="col-lg-9">
-                <input className="form-control" type="number" step={1} min={0} onInput="validity.valid||(value='');" onChange={(event) => {
+                <input
+                  className="form-control"
+                  type="number"
+                  step={1}
+                  min={0}
+                  onInput="validity.valid||(value='');"
+                  onChange={(event) => {
                     setRecycled(event.target.value);
-                  }}/>
+                  }}
+                />
               </div>
             </div>
 
@@ -183,14 +241,18 @@ function Activity_form() {
                 Vegetarian/Vegan for the day?
               </label>
               <div className="col-lg-9">
-                <select className="form-control" id="user_time_zone" size="0" onChange={(event) => {
-                  console.log(event.target.value);
-                    setDistanceWalked(event.target.value);
-                  }}>
+                <select
+                  className="form-control"
+                  id="user_time_zone"
+                  size="0"
+                  onChange={(event) => {
+                    console.log(event.target.value);
+                    setDiet(event.target.value);
+                  }}
+                >
                   <option value="neither">Neither</option>
                   <option value="vegetarian">Vegetarian</option>
                   <option value="vegan">Vegan</option>
-                  
                 </select>
               </div>
             </div>
@@ -198,7 +260,11 @@ function Activity_form() {
             <div className="form-group row">
               <label className="col-lg-3 col-form-label form-control-label"></label>
               <div className="col-lg-9">
-                <input className="btn btn-secondary" type="reset" value="Cancel" />
+                <input
+                  className="btn btn-secondary"
+                  type="reset"
+                  value="Cancel"
+                />
                 <input
                   className="btn btn-primary"
                   type="submit"
