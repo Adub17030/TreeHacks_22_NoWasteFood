@@ -18,37 +18,6 @@ function Login() {
   }, [user, loading]);
   return (
     <div className="login">
-      <div className="login__container">
-        <input
-          type="text"
-          className="login__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="login__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button
-          className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
-        >
-          Login
-        </button>
-        {/* <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button> */}
-        {/* <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
-        </div> */}
-      </div>
       <div class="card card-outline-secondary">
         <div class="card-header">
           <h3 class="mb-0">Login</h3>
@@ -69,6 +38,9 @@ function Login() {
                 name="uname1"
                 required=""
                 type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div class="form-group">
@@ -79,15 +51,22 @@ function Login() {
                 id="pwd1"
                 required=""
                 type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div class="form-check small">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" />
-                <span>Remember me on this computer</span>
+                <span>Remember me on this device</span>
               </label>
             </div>
-            <button class="btn btn-success btn-lg float-right" type="button">
+            <button
+              class="btn btn-success btn-lg float-right"
+              type="button"
+              onClick={() => logInWithEmailAndPassword(email, password)}
+            >
               Login
             </button>
           </form>

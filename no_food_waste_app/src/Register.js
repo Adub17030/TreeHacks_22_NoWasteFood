@@ -24,44 +24,6 @@ function Register() {
   }, [user, loading]);
   return (
     <div className="login">
-      <div className="login__container">
-        <input
-          type="text"
-          className="login__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          className="login__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="login__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button
-          className="login__btn"
-          onClick={() => registerWithEmailAndPassword(name, email, password)}
-        >
-          Register
-        </button>
-        {/* <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button> */}
-        {/* <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
-        </div> */}
-      </div>
       <div class="card card-outline-secondary">
         <div class="card-header">
           <h3 class="mb-0">Sign Up</h3>
@@ -75,6 +37,8 @@ function Register() {
                 id="inputName"
                 placeholder="Full name"
                 type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div class="form-group">
@@ -85,6 +49,8 @@ function Register() {
                 placeholder="Email"
                 required=""
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div class="form-group">
@@ -95,14 +61,14 @@ function Register() {
                 placeholder="Password"
                 required=""
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <small class="form-text text-muted" id="passwordHelpBlock">
-                Your password must be 8-20 characters long, contain letters and
-                numbers, and must not contain spaces, special characters, or
-                emoji.
+                Your password must be 6 characters long.
               </small>
             </div>
-            <div class="form-group">
+            {/* <div class="form-group">
               <label for="inputVerify3">Verify</label>
               <input
                 class="form-control"
@@ -111,9 +77,15 @@ function Register() {
                 required=""
                 type="password"
               />
-            </div>
+            </div> */}
             <div class="form-group">
-              <button class="btn btn-success btn-lg float-right" type="submit">
+              <button
+                class="btn btn-success btn-lg float-right"
+                type="button"
+                onClick={() =>
+                  registerWithEmailAndPassword(name, email, password)
+                }
+              >
                 Register
               </button>
             </div>
