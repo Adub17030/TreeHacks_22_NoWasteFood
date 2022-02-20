@@ -5,7 +5,7 @@ import Register from "./Register";
 import Home from "./Home";
 import Welcome from "./Welcome";
 import PostBehaviour from "./pages/PostBehaviour";
-import ActivityCard from "./components/Activity_card";
+import ActivityCard from "./components/ActivityCard";
 
 export default function App() {
   return (

@@ -11,7 +11,7 @@ import "./Home.css";
 import { doc, getDoc } from "firebase/firestore";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { getDataCollection } from "./firebase";
-import ActivityCard from "./components/Activity_card";
+import ActivityCarousel from "./components/Activity_carousel";
 
 function Home() {
   const [user, loading, error] = useAuthState(auth);
@@ -26,6 +26,7 @@ function Home() {
     diet: "",
   });
   const [lastCarbonDataUpdateDays, setLastCarbonDataUpdateDays] = useState(-1);
+  const [dataList, setdataList] = useState([]);
   const navigate = useNavigate();
 
   const getCurrentUserData = async () => {
@@ -85,9 +86,11 @@ function Home() {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     getCurrentUserData();
-    console.log(getDataCollection("users"));
+    // await setdataList(getDataCollection("users"));
+    // console.log(getDataCollection("users"));
+    // console.log(dataList);
     if (!user) navigate("/");
   }, [user, loading]);
   return (
@@ -155,7 +158,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <ActivityCard data={{ name: "test" }} />
+      <ActivityCarousel data={{ list: [] }} />
     </div>
   );
 }
