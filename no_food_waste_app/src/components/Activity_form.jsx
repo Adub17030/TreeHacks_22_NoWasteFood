@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { db } from "../firebase";
 import {
@@ -15,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 function Activity_form() {
   const user = auth.currentUser;
   const date = new Date();
+  const navigate = useNavigate();
   toast.configure();
   const [distanceWalked, setDistanceWalked] = useState(0);
   const [distanceByVehicle, setDistanceByVehicle] = useState(0);
@@ -28,23 +30,9 @@ function Activity_form() {
   const publishActivity = async (e) => {
     e.preventDefault();
 
-    // Buscar el documento de assets que corresponde al usuario.
-    //const userRef = collection(db, "assets");
-    // Buscar el documento de usersdata que corresponde al usuario.
+    // Search for document in users of the current user.
     const usersdataRef = doc(db, "users", user.uid);
-    //Se crea el archivo o se junta si ya existe.
-    // addDoc(userRef, {
-    //   description: description,
-    //   publish_date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
-    //   isInSale: true,
-    //   title: state.currentAsset.metadata.name,
-    //   quantity: quantity,
-    //   userID: user.uid,
-    //   cid:
-    //     state.currentAsset.length > 0
-    //       ? state.currentAsset.metadata.image.substring(7)
-    //       : null,
-    // })
+
     updateDoc(
       usersdataRef,
       {
@@ -66,7 +54,8 @@ function Activity_form() {
       }
     )
       .then(() => {
-        //Limpio el formulario y mando el mensaje de confirmacion
+        // Clean the form and send confirmation message
+
         setDistanceWalked(0);
         setDistanceByVehicle(0);
         setWasteProduced(0);
@@ -80,11 +69,20 @@ function Activity_form() {
         //console.log(datos);
         //addCurrentAsset(null);
 
-        toast.success("Asset published successfully! Refreshing the page...", {
-          autoClose: 3000,
+        toast.success("Asset published successfully! Redirecting to home...", {
+          autoClose: 1500,
           position: toast.POSITION.TOP_CENTER,
           theme: "colored",
+          
         });
+        
+      })
+      .then(() => {
+        //Reloading page
+        setTimeout( () => {
+          navigate("/home");
+        }, 1000)
+        
       })
       .catch((err) => {
         console.log(err);
