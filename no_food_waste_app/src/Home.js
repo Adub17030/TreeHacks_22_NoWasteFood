@@ -31,12 +31,8 @@ function Home() {
     if (docSnap.exists()) {
       let carbonData = docSnap.data().carbonData
       let lastData = carbonData[carbonData.length - 1]
-      setLastUserCarbonData({...lastData})
+      setLastUserCarbonData({lastData})
       console.log(lastUserCarbonData)
-      // carbonData.forEach(obj => {
-        
-      // });
-      console.log(lastData);
     }
     else{
       console.log("No such document!");
@@ -44,8 +40,8 @@ function Home() {
   };
 
   useEffect(() => {
-    getCurrentUserData();
-    if (!user) navigate("/");
+    getCurrentUserData()
+    if (!user) navigate("/login");
   }, [user, loading]);
   return (
     <div>
@@ -85,6 +81,7 @@ function Home() {
             <p class="card-text">
               Walked {lastUserCarbonData.distanceWalked} km<br/>
               Produced {lastUserCarbonData.wasteProduced} kg of waste<br/>
+              Received {lastUserCarbonData.naturalLight} hours worth of natural light <br/>
             </p>
             <a href="#" class="btn btn-primary">
               Go somewhere
