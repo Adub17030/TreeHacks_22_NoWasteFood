@@ -114,7 +114,14 @@ function Home() {
                 onClick={() => navigate("/activity")}
               >
                 Activity Post
-              </button>{" "}
+              </button>
+              <button
+                class="btn btn-sm btn-outline-success mx-1"
+                type="button"
+                onClick={() => navigate("/ar")}
+              >
+                AR Connect
+              </button>
               <button
                 class="btn btn-sm btn-outline-success mx-1"
                 type="button"

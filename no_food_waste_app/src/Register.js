@@ -20,7 +20,7 @@ function Register() {
       // maybe trigger a loading screen
       return;
     }
-    if (user) navigate("/home");
+    if (!user) navigate("/");
   }, [user, loading]);
   return (
     <div className="login">

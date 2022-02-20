@@ -1,26 +1,64 @@
 import React, { useEffect, useState } from "react";
-import ActivityForm from "../components/Activity_form";
-import { auth, logout } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  auth,
+  logout,
+  logInWithEmailAndPassword,
+  signInWithGoogle,
+  registerWithEmailAndPassword,
+} from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
-
-function Post_behaviour() {
+import Button from "react-bootstrap/Button";
+import "./AR.css";
+import Modal from "react-bootstrap/Modal";
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Connect With Me
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <img
+          className="img"
+          src="https://media.nbcbayarea.com/2020/10/qr-code-huge.png?resize=906,1024"
+        />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+function AR() {
   const [user, loading, error] = useAuthState(auth);
+  const [modalShow, setModalShow] = React.useState(false);
 
   const navigate = useNavigate();
+
   useEffect(() => {
+    if (loading) {
+      // maybe trigger a loading screen
+      return;
+    }
     if (!user) navigate("/");
   }, [user, loading]);
   return (
     <div>
+      {" "}
       <Navbar className="color-nav" expand="xxl">
         <Container>
-          <Navbar.Brand href="/home">App Name</Navbar.Brand>
+          <Navbar.Brand href="/home">Eco-Friends</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -56,19 +94,25 @@ function Post_behaviour() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <h3 className="text-center">
-              Share with your circle the sustainable behaviour you have today!
-            </h3>
-          </div>
-        </div>
-      </div>
-
-      <ActivityForm />
+      <Container className="box">
+        <Button
+          className="abc"
+          variant="success"
+          size="lg"
+          onClick={() => setModalShow(true)}
+        >
+          Connect
+        </Button>{" "}
+        <Button className="abc" variant="success" size="lg">
+          Connect with AR
+        </Button>{" "}
+      </Container>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }
 
-export default Post_behaviour;
+export default AR;
