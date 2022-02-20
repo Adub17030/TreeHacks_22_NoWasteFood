@@ -97,7 +97,7 @@ function Home() {
     <div>
       <Navbar className="color-nav" expand="xxl">
         <Container>
-          <Navbar.Brand href="/home">App Name</Navbar.Brand>
+          <Navbar.Brand href="/home">Eco-Friends</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -126,19 +126,18 @@ function Home() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="container">
+      {/* <div className="container">
         <div className="row align-middle">
           <div className="col-12 py-3">
-          <div>Welcome back: {userName}</div>
+            <div>Welcome back: {userName}</div>
           </div>
         </div>
-      
-      </div>
-      
-      <div class="text-center mt-0">
+      </div> */}
+
+      <div class="text-center mt-0 pt-3">
         <div class="card text-center">
           <div class="card-header" style={{ backgroundColor: "#B7EBB7" }}>
-            <h2>My activity</h2>
+            <h2>{userName}'s activity</h2>
           </div>
           <div class="card-body">
             <h5 class="card-title">On average you have...</h5>

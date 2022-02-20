@@ -27,7 +27,7 @@ function ActivityCarousel(props) {
       slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 800, min: 464 },
       items: 2,
       slidesToSlide: 2, // optional, default to 1.
     },
@@ -109,6 +109,10 @@ function ActivityCarousel(props) {
     }
   };
   const makeDataList = (res) => {
+    res.sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1));
+    for (let i = 0; i < res.length; i++) {
+      console.log(res[i].timestamp);
+    }
     setdataList(res);
     // console.log(res);
     // console.log(dataList);
