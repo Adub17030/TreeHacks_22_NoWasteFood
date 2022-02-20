@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <main>HERE</main>
+      
     </div>
   );
 };
