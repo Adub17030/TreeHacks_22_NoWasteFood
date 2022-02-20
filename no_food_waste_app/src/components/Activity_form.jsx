@@ -99,7 +99,7 @@ function Activity_form() {
     <div className="container mt-2">
       <div className="card card-outline-secondary">
         <div className="card-header">
-          <h3 className="mb-0">How far did you go today?</h3>
+          <h3 className="mb-0 text-center">How far did you go today?</h3>
         </div>
         <div className="card-body">
           <form
@@ -122,7 +122,7 @@ function Activity_form() {
                 </select>
               </div>
             </div> */}
-            <div className="form-group row">
+            <div className="form-group row ">
               <label className="col-lg-3 col-form-label form-control-label">
                 Enter distance walked (meters)
               </label>
