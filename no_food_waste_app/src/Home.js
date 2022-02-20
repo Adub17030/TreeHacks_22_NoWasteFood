@@ -8,10 +8,43 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Home.css";
+import { doc, getDoc  } from "firebase/firestore"; 
+import { collection, getDocs, getFirestore } from "firebase/firestore"; 
+
 function Home() {
   const [user, loading, error] = useAuthState(auth);
+  const [lastUserCarbonData, setLastUserCarbonData] = useState({ distanceWalked: "", distanceByVehicle: "", wasteProduced: "", naturalLight: "", showerTime: "", recycled: "", diet: ""});
   const navigate = useNavigate();
+
+  const [distanceWalked, setDistanceWalked] = useState(0);
+  const [distanceByVehicle, setDistanceByVehicle] = useState(0);
+  const [wasteProduced, setWasteProduced] = useState(0);
+  const [naturalLight, setNaturalLight] = useState(0);
+  const [showerTime, setShowerTime] = useState(0);
+  const [recycled, setRecycled] = useState(0);
+  const [diet, setDiet] = useState("neither");
+
+  const getCurrentUserData =async() => {
+
+    const usersdataRef = doc(getFirestore(), "users", user.uid);
+    const docSnap = await getDoc(usersdataRef);
+    if (docSnap.exists()) {
+      let carbonData = docSnap.data().carbonData
+      let lastData = carbonData[carbonData.length - 1]
+      setLastUserCarbonData({...lastData})
+      console.log(lastUserCarbonData)
+      // carbonData.forEach(obj => {
+        
+      // });
+      console.log(lastData);
+    }
+    else{
+      console.log("No such document!");
+    }
+  };
+
   useEffect(() => {
+    getCurrentUserData();
     if (!user) navigate("/");
   }, [user, loading]);
   return (
@@ -69,10 +102,8 @@ function Home() {
           <div class="card-body">
             <h5 class="card-title">On average you have</h5>
             <p class="card-text">
-              <ul>
-                <li>one</li>
-                <li>two</li>
-              </ul>
+              Walked {lastUserCarbonData.distanceWalked} km<br/>
+              Produced {lastUserCarbonData.wasteProduced} kg of waste<br/>
             </p>
             <a href="#" class="btn btn-primary">
               Go somewhere

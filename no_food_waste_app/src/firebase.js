@@ -18,8 +18,6 @@ import {
   collection,
   where,
   addDoc,
-  doc,
-  setDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -74,12 +72,11 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    await setDoc(doc(db, "users", user.uid), {
+    await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
-      carbonData: [],
     });
   } catch (err) {
     console.error(err);
