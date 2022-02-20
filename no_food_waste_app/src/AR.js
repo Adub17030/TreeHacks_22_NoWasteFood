@@ -58,7 +58,7 @@ function AR() {
       {" "}
       <Navbar className="color-nav" expand="xxl">
         <Container>
-          <Navbar.Brand href="/home">Eco-Friends</Navbar.Brand>
+          <Navbar.Brand href="/home">EcoFriends</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -103,9 +103,7 @@ function AR() {
         >
           Connect
         </Button>{" "}
-        <Button className="abc" variant="success" size="lg">
-          Connect with AR
-        </Button>{" "}
+        <a href={"https://adi-ar.surge.sh/"}> Connect with AR</a>{" "}
       </Container>
       <MyVerticallyCenteredModal
         show={modalShow}

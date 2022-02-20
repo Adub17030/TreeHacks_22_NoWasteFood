@@ -20,7 +20,7 @@ function Post_behaviour() {
     <div>
       <Navbar className="color-nav" expand="xxl">
         <Container>
-          <Navbar.Brand href="/home">App Name</Navbar.Brand>
+          <Navbar.Brand href="/home">EcoFriends</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

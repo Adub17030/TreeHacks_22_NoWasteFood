@@ -8,7 +8,7 @@ function header() {
       style={{ backgroundColor: "rgb(107, 255, 159)" }}
     >
       <a class="navbar-brand mx-2" href="#">
-        Go Green!
+        EcoFriends
       </a>
       <form class="form-inline">
         <a href="/login">
