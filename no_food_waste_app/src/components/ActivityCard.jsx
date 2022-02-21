@@ -40,7 +40,7 @@ function ActivityCard(props) {
       </MDBCardBody>
       <MDBListGroup flush>
         <MDBListGroupItem>
-          Walked {props.data.distanceWalked}km. He just go to some cool places.
+          Walked {props.data.distanceWalked}km!
         </MDBListGroupItem>
         <MDBListGroupItem>
           Recycled {props.data.recycled}kg worth of waste. Nice!
