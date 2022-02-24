@@ -7,6 +7,7 @@ import Welcome from "./Welcome";
 import PostBehaviour from "./pages/PostBehaviour";
 import ActivityCard from "./components/ActivityCard";
 import AR from "./AR";
+import './index.css'
 
 export default function App() {
   return (

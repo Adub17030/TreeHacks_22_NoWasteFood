@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth, logout, signInWithGoogle } from "./firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Header from "./components/Header";
 import LoggedInHeader from "./components/LoggedInHeader";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
