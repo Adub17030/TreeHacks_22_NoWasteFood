@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Welcome.css";
+import CSSTransition from 'react-transition-group';
 // import LandingText from "../LandingText/LandingText.js";
 // import LandingPhoto from "../LandingPhoto/LandingPhoto";
 // import Navbar from './Components/Navbar/Navbar';
 // import { ReactNavbar } from "react-responsive-animate-navbar";
 import Header from "./components/Header";
+import Fade from 'react-bootstrap/Fade'
+import { motion } from "framer-motion"
 
 const Home = () => {
+  const [open, setOpen] = useState(false);
+
+   useEffect(() => {
+    setOpen(true)
+  });
+
   return (
     <div>
       <Header />
-      <div className="intro-logo jumbo-bg">
-        <h1>Welcome to EcoFriends</h1>
-      </div>
+
+
+      <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 2, type: "tween" }}
+  >
+    <div className="intro-logo jumbo-bg">
+          <h1>Welcome to EcoFriends</h1>
+        </div>
+  </motion.div>
+        
       <style jsx>{`
         header {
           margin-bottom: 1rem;
