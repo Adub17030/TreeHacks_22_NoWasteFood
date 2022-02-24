@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { auth, logout, signInWithGoogle } from "./firebase";
+import { auth, signInWithGoogle } from "./firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "./components/Header";
-import LoggedInHeader from "./components/LoggedInHeader";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Home.css";
 import { doc, getDoc } from "firebase/firestore";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
@@ -96,44 +91,8 @@ function Home() {
   }, [user, loading]);
   return (
     <div>
-      <Navbar className="color-nav" expand="xxl">
-        <Container>
-          <Navbar.Brand href="/home">EcoFriends</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <button
-                class="btn btn-sm btn-outline-success mx-1"
-                type="button"
-                onClick={() => navigate("/home")}
-              >
-                Home
-              </button>
-              <button
-                class="btn btn-sm btn-outline-success mx-1"
-                type="button"
-                onClick={() => navigate("/activity")}
-              >
-                Activity Post
-              </button>
-              <button
-                class="btn btn-sm btn-outline-success mx-1"
-                type="button"
-                onClick={() => navigate("/ar")}
-              >
-                AR Connect
-              </button>
-              <button
-                class="btn btn-sm btn-outline-success mx-1"
-                type="button"
-                onClick={() => logout()}
-              >
-                Logout
-              </button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <Header user={user} />
+
       {/* <div className="container">
         <div className="row align-middle">
           <div className="col-12 py-3">

@@ -1,7 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../firebase";
 
-function header(props) {
+function Header(props) {
+  const navigate = useNavigate();
   const titleFontStyle = {
     fontFamily: 'Kaushan Script, cursive'
   }
@@ -19,8 +22,41 @@ function header(props) {
       />
       <span class="px-2" style={titleFontStyle} ><b>EcoFriends</b></span>
     </a>
-  
-      <form class="form-inline">
+
+    {props.user &&
+    <div>
+    <button
+      class="btn btn-sm btn-outline-success mx-1"
+      type="button"
+      onClick={() => navigate("/home")}
+    >
+      Home
+    </button>
+    <button
+      class="btn btn-sm btn-outline-success mx-1"
+      type="button"
+      onClick={() => navigate("/activity")}
+    >
+      Activity Post
+    </button>
+    <button
+      class="btn btn-sm btn-outline-success mx-1"
+      type="button"
+      onClick={() => navigate("/ar")}
+    >
+      AR Connect
+    </button>
+    <button
+      class="btn btn-sm btn-outline-success mx-1"
+      type="button"
+      onClick={() => logout()}
+    >
+      Logout
+    </button>
+    </div>
+    }
+
+      {!props.user && <form class="form-inline">
         <a href="/login">
           <button class="btn btn-sm btn-outline-success mx-1" type="button">
             Login
@@ -31,9 +67,11 @@ function header(props) {
             Sign up
           </button>
         </a>
-      </form>
+      </form>}
+
+
     </nav>
   );
 }
 
-export default header;
+export default Header;
